@@ -15,62 +15,56 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="nav has-shadow">
             <div class="container">
-                <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                <div class="nav-left">
+                    <a class="nav-item" href="{{ route('home') }}">
+                        <img src="{{ asset('images/logo.png') }}" alt="logo">
                     </a>
+                    <a href="#" class="nav-item is-tab is-hidden-mobile m-l-10">Learn</a>
+                    <a href="#" class="nav-item is-tab is-hidden-mobile">Discuss</a>
+                    <a href="#" class="nav-item is-tab is-hidden-mobile">Share</a>
                 </div>
+                <div class="nav-right" style="overflow: visible;">
+                    @if (!Auth::guest())
+                        <a href="#" class="nav-item is-tab">Login</a>
+                        <a href="#" class="nav-item is-tab">Join</a>
+                    @else
+                        <button class="dropdown is-aligned-right nav-item is-open is-tab">
+                            Hey Dennis <span class="icon"><i class="fa fa-caret-down"></i></span>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">
+                                        <span class="icon"><i class="fa fa-fw fa-user-circle-o"></i></span>
+                                        Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="icon"><i class="fa fa-fw fa-bell"></i></span>
+                                        Notifications
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="icon"><i class="fa fa-fw fa-cog"></i></span>
+                                        Settings
+                                    </a>
+                                </li>
+                                <li class="seperator"></li>
+                                <li>
+                                    <a href="#">
+                                        <span class="icon"><i class="fa fa-fw fa-sign-out"></i></span>
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </button>
+                    @endif
                 </div>
             </div>
         </nav>
-
         @yield('content')
     </div>
 
