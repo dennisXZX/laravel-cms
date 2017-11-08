@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel CMS') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -26,11 +26,11 @@
                     <a href="#" class="nav-item is-tab is-hidden-mobile">Share</a>
                 </div>
                 <div class="nav-right" style="overflow: visible;">
-                    @if (!Auth::guest())
+                    @if (Auth::guest())
                         <a href="#" class="nav-item is-tab">Login</a>
                         <a href="#" class="nav-item is-tab">Join</a>
                     @else
-                        <button class="dropdown is-aligned-right nav-item is-open is-tab">
+                        <button class="dropdown is-aligned-right nav-item is-tab">
                             Hey Dennis <span class="icon"><i class="fa fa-caret-down"></i></span>
 
                             <ul class="dropdown-menu">
